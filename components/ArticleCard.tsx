@@ -5,7 +5,7 @@ import { Article } from "@/types";
 export default function ArticleCard({ article }: { article: Article }) {
   return (
     <Link href={`/articles/${article.id}`}>
-      <div>
+      <div className="card">
         {article.image_url && (
           <div className="card-image">
             <Image
@@ -18,6 +18,7 @@ export default function ArticleCard({ article }: { article: Article }) {
         )}
         <div>
           <h3>{article.title}</h3>
+          <p>{article.content}</p>
           <p>
             {article.category.toUpperCase()} • {new Date(article.created_at).toLocaleDateString()}
           </p>

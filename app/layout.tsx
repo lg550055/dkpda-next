@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Your daily dose of satire",
-  description: "A satire daily news site",
+  description: "The satire daily news site",
 };
 
 export default function RootLayout({
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

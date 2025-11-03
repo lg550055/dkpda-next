@@ -9,9 +9,19 @@ type User = {
   is_admin: boolean;
 };
 
+type Theme = "light" | "dark";
+
 export default function Navbar() {
   const [user, setUser] = useState<User | null>(null);
+  const [theme, setTheme] = useState<Theme>("light");
   const router = useRouter();
+
+  const applyTheme = (nextTheme: Theme) => {
+    if (typeof document === "undefined") {
+      return;
+    }
+    document.documentElement.dataset.theme = nextTheme;
+  };
 
   useEffect(() => {
     const token = getAuthToken();
@@ -34,6 +44,29 @@ export default function Navbar() {
     }
   }, []);
 
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem("theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      setTheme(storedTheme);
+      applyTheme(storedTheme);
+      return;
+    }
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme: Theme = prefersDark ? "dark" : "light";
+    setTheme(initialTheme);
+    applyTheme(initialTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const nextTheme: Theme = prevTheme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+      window.localStorage.setItem("theme", nextTheme);
+      return nextTheme;
+    });
+  };
+
   const logout = () => {
     clearAuthToken();
     setUser(null);
@@ -53,6 +86,15 @@ export default function Navbar() {
           <Link href="/articles">
             Articles
           </Link>
+
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀" : "⏾"}
+          </button>
 
           {user ? (
             <>

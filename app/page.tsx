@@ -7,9 +7,9 @@ export default async function Home() {
   const articles: Article[] = res.data;
 
   return (
-  <div>
-  <h1>Dikipedia -your daily dose of satire</h1>
-  <div>
+    <div>
+      <h1>Dikipedia -your daily dose of satire</h1>
+      <div>
         {articles.map((a) => (
           <ArticleCard key={a.id} article={a} />
         ))}
