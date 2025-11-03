@@ -5,6 +5,10 @@
   --secondary: #457b9d; /* Satirical blue */
   --background: #fff;
   --foreground: #171717;
+  --text-on-primary: #ffffff;
+  --surface: rgba(255, 255, 255, 0.95);
+  --shadow: rgba(0, 0, 0, 0.07);
+  --blockquote-bg: rgba(69, 123, 157, 0.07);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +17,10 @@
     --secondary: #219ebc; /* Satirical cyan */
     --background: #171717;
     --foreground: #ededed;
+    --text-on-primary: #171717;
+    --surface: rgba(23, 23, 23, 0.95);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --blockquote-bg: rgba(33, 158, 188, 0.15);
   }
 }
 
@@ -28,7 +36,7 @@ body {
 /* Top navigation bar */
 .navbar {
   background: var(--primary);
-  color: #fff;
+  color: var(--text-on-primary);
   padding: 0.75rem 0; /* vertical padding only; inner handles horizontal */
 }
 
@@ -43,7 +51,7 @@ body {
 }
 
 .nav-logo {
-  color: #fff;
+  color: var(--text-on-primary);
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.5px;
@@ -57,10 +65,10 @@ body {
 }
 
 .navbar a {
-  color: #fff;
+  color: var(--text-on-primary);
 }
 .navbar a:hover {
-  color: #fff;
+  color: var(--text-on-primary);
   text-decoration: underline;
 }
 
@@ -68,16 +76,9 @@ main {
   max-width: 900px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background: rgba(255,255,255,0.95);
+  background: var(--surface);
   border-radius: 12px;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-}
-
-@media (prefers-color-scheme: dark) {
-  main {
-    background: rgba(23,23,23,0.95);
-    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.3);
-  }
+  box-shadow: 0 2px 16px 0 var(--shadow);
 }
 
 a {
@@ -92,7 +93,7 @@ a:hover {
 
 button {
   background: var(--primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border: none;
   border-radius: 6px;
   padding: 0.5em 1.2em;
@@ -106,7 +107,7 @@ button:hover {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border: none;
   border-radius: 6px;
   padding: 0.5em 1.2em;
@@ -129,7 +130,7 @@ blockquote {
   border-left: 4px solid var(--secondary);
   margin: 1em 0;
   padding: 0.5em 1em;
-  background: rgba(69,123,157,0.07);
+  background: var(--blockquote-bg);
   font-style: italic;
 }
 
