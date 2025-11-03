@@ -27,20 +27,16 @@ export default function LikeButton({
   };
 
   return (
-    <div className="flex gap-4 items-center">
+  <div>
       <button
         onClick={() => react("upvote")}
-        className={`flex items-center gap-1 px-3 py-1 rounded ${
-          currentVote === "upvote" ? "bg-green-600 text-white" : "bg-gray-200"
-        }`}
+        
       >
         Up {upvotes}
       </button>
       <button
         onClick={() => react("downvote")}
-        className={`flex items-center gap-1 px-3 py-1 rounded ${
-          currentVote === "downvote" ? "bg-red-600 text-white" : "bg-gray-200"
-        }`}
+        
       >
         Down {downvotes}
       </button>

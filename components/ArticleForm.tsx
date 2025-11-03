@@ -83,31 +83,31 @@ export default function ArticleForm({ article, onSuccess }: Props) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-6">
+  <div>
+  <h2>
         {article ? "Edit Article" : "Create New Article"}
       </h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+  <form onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="title">
             Title
           </label>
           <input
             {...register("title")}
             id="title"
             placeholder="Enter a catchy title..."
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            
           />
           {errors.title && (
-            <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+            <p>{errors.title.message}</p>
           )}
         </div>
 
         {/* Content */}
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="content">
             Content <span className="text-gray-500">({wordCount}/300 words)</span>
           </label>
           <textarea
@@ -115,22 +115,21 @@ export default function ArticleForm({ article, onSuccess }: Props) {
             id="content"
             rows={8}
             placeholder="Write your satire..."
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
           {errors.content && (
-            <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>
+            <p>{errors.content.message}</p>
           )}
         </div>
 
         {/* Category */}
         <div>
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="category">
             Category
           </label>
           <select
             {...register("category")}
             id="category"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            
           >
             {categoryOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -139,13 +138,13 @@ export default function ArticleForm({ article, onSuccess }: Props) {
             ))}
           </select>
           {errors.category && (
-            <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>
+            <p>{errors.category.message}</p>
           )}
         </div>
 
         {/* Image URL */}
         <div>
-          <label htmlFor="image_url" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="image_url">
             Image URL (optional)
           </label>
           <input
@@ -153,26 +152,26 @@ export default function ArticleForm({ article, onSuccess }: Props) {
             id="image_url"
             type="url"
             placeholder="https://example.com/image.jpg"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            
           />
           {errors.image_url && (
-            <p className="mt-1 text-sm text-red-600">{errors.image_url.message}</p>
+            <p>{errors.image_url.message}</p>
           )}
         </div>
 
         {/* Submit */}
-        <div className="flex gap-3">
+  <div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md disabled:opacity-50"
+            
           >
             {isSubmitting ? "Saving..." : article ? "Update" : "Publish"}
           </button>
           <button
             type="button"
             onClick={() => router.back()}
-            className="flex-1 py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-md"
+            
           >
             Cancel
           </button>
