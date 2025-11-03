@@ -87,15 +87,6 @@ export default function Navbar() {
             Articles
           </Link>
 
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? "☀" : "⏾"}
-          </button>
-
           {user ? (
             <>
               {/* Admin Link */}
@@ -120,6 +111,15 @@ export default function Navbar() {
               </button>
             </Link>
           )}
+
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀" : "⏾"}
+          </button>
         </div>
       </div>
     </nav>
