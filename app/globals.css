@@ -35,7 +35,6 @@ body {
 .navbar {
   background: var(--primary);
   color: var(--text-on-primary);
-  /* padding: 0.75rem 0; */
 }
 .nav-inner {
   max-width: 1100px;
@@ -46,11 +45,18 @@ body {
   justify-content: space-between;
 }
 .nav-logo {
-  color: var(--text-on-primary);
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: 0.5px;
-  text-decoration: none;
+  background-color: var(--text-on-primary);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: var(--primary);
+  margin: 0.3em 0;
+  padding: 0.15em 0.3em 0.15em 0.4em;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: -0.15em;
+}
+.nav-logo:hover {
+  background-color: var(--secondary);
 }
 .nav-right {
   border: 1px solid cyan;
@@ -61,14 +67,14 @@ body {
 .theme-toggle {
   color: var(--text-on-primary);
   border: 1px solid cyan;
-  padding: 0.4rem 0.2rem;
+  padding: 0.2em;
   font-size: 0.9rem;
   cursor: pointer;
 }
-.navbar a {
+.nav-right a {
   color: var(--text-on-primary);
 }
-.navbar a:hover {
+.nav-right a:hover {
   color: var(--text-on-primary);
   text-decoration: underline;
 }

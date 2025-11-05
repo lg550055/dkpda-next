@@ -77,8 +77,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="nav-inner">
         {/* Logo */}
-        <Link href="/" className="nav-logo">
-          Satire
+        <Link href="/" className="nav-logo" aria-label="home">
+          KP
         </Link>
 
         {/* Right-side menu */}
