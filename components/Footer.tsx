@@ -3,7 +3,7 @@ export default function Footer() {
 
   return (
     <footer className="site-footer">
-      © {currentYear} DKPDA. All rights reserved.
+      © Dikipedia {currentYear}. All rights reserved. (Not really)
     </footer>
   );
 }

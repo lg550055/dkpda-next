@@ -17,15 +17,10 @@ export default function ArticleCard({ article }: { article: Article }) {
           </div>
         )}
         <div>
+          <span>{article.category.toUpperCase()} • {new Date(article.created_at).toLocaleDateString()}</span>
+          <span>⇧ {article.upvotes} ⇩</span>
           <h3>{article.title}</h3>
           <p>{article.content}</p>
-          <p>
-            {article.category.toUpperCase()} • {new Date(article.created_at).toLocaleDateString()}
-          </p>
-          <div>
-            <span>Up {article.upvotes}</span>
-            <span>Down {article.downvotes}</span>
-          </div>
         </div>
       </div>
     </Link>
