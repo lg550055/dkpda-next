@@ -68,7 +68,6 @@ body {
 }
 .theme-toggle {
   color: var(--text-on-primary);
-  border: 1px solid cyan;
   padding: 0.2em;
   font-size: 0.9rem;
   cursor: pointer;
@@ -121,7 +120,7 @@ a:hover {
 button {
   background: var(--primary);
   color: var(--text-on-primary);
-  /* border: none; */
+  border: none;
   border-radius: 6px;
   padding: 0.4em 1em;
   font-size: 0.9em;
@@ -173,4 +172,27 @@ blockquote {
 /* Generic helper when needed */
 .img-cover {
   object-fit: cover;
+}
+
+.login-container {
+  min-height: 80vh;
+  padding: 1rem 0 2rem;
+  text-align: center;
+}
+form {
+  max-width: 400px;
+  margin: 2rem auto 2rem;
+}
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+form input {
+  border: none;
+  border-radius: var(--std-border-radius);
+  padding: 0.5rem 0;
+  text-align: center;
+}
+form div {
+  margin-bottom: 1rem;
 }

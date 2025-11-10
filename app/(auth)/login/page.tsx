@@ -27,7 +27,7 @@ export default function Login() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await api.post(
-        "/login",
+        "/token",
         new URLSearchParams({
           username: data.email,  // FastAPI expects "username" field
           password: data.password,
@@ -45,59 +45,46 @@ export default function Login() {
   };
 
   return (
-  <div>
-  <div>
-  <h1>Login</h1>
-
-  <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="email">
-              Email
-            </label>
-            <input
-              {...register("email")}
-              type="email"
-              id="email"
-              placeholder="you@example.com"
-              
-            />
-            {errors.email && (
-              <p>{errors.email.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="password">
-              Password
-            </label>
-            <input
-              {...register("password")}
-              type="password"
-              id="password"
-              placeholder="••••••••"
-              
-            />
-            {errors.password && (
-              <p>{errors.password.message}</p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            
-          >
-            {isSubmitting ? "Logging in..." : "Login"}
-          </button>
-        </form>
-
-  <p>
-          No account?{" "}
-          <Link href="/register">
-            Register
-          </Link>
-        </p>
-      </div>
+    <div className="login-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            {...register("email")}
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+          />
+          {errors.email && (
+            <p>{errors.email.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password
+          </label>
+          <input
+            {...register("password")}
+            type="password"
+            id="password"
+            placeholder="••••••••"
+          />
+          {errors.password && (
+            <p>{errors.password.message}</p>
+          )}
+        </div>
+        <br />
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Logging in..." : "Login"}
+        </button>
+      </form>
+      <p>
+        No account?{" "}
+        <Link href="/register">
+          Register
+        </Link>
+      </p>
     </div>
   );
 }

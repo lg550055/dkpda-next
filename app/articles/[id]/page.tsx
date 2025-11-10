@@ -27,12 +27,11 @@ export default async function ArticlePage({
         </div>
       )}
       <div>
-        <span>By User #{article.author_id}</span>
         <span>{new Date(article.created_at).toLocaleDateString()}</span>
         <span>{article.category.toUpperCase()}</span>
       </div>
-    <p>{article.content}</p>
-    <div>
+      <p>{article.content}</p>
+      <div>
         <LikeButton
           articleId={article.id}
           initialUpvotes={article.upvotes}
@@ -40,6 +39,6 @@ export default async function ArticlePage({
           userVote={article.user_vote}
         />
       </div>
-  </article>
+    </article>
   );
 }

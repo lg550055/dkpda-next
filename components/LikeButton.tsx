@@ -27,17 +27,11 @@ export default function LikeButton({
   };
 
   return (
-  <div>
-      <button
-        onClick={() => react("upvote")}
-        
-      >
+    <div>
+      <button onClick={() => react("upvote")}>
         Up {upvotes}
       </button>
-      <button
-        onClick={() => react("downvote")}
-        
-      >
+      <button onClick={() => react("downvote")}>
         Down {downvotes}
       </button>
     </div>
