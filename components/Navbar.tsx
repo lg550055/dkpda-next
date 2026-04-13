@@ -76,39 +76,24 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-inner">
-        {/* Logo */}
-        <Link href="/" className="nav-logo" aria-label="home">
-          KP
-        </Link>
+        <Link href="/" className="nav-logo" aria-label="home">KP</Link>
 
         {/* Right-side menu */}
         <div className="nav-right">
-          <Link href="/articles">
-            Articles
-          </Link>
+          <Link href="/articles">Articles</Link>
 
           {user ? (
             <>
               {/* Admin Link */}
               {user.is_admin && (
-                <Link href="/admin">
-                  Admin
-                </Link>
+                <Link href="/admin">Admin</Link>
               )}
-
-              {/* User Email */}
-              <span>{user.email}</span>
-
               {/* Logout */}
-              <button onClick={logout}>
-                Logout
-              </button>
+              <button onClick={logout}>Logout</button>
             </>
           ) : (
             <Link href="/login">
-              <button type="button" className="btn-primary">
-                Login
-              </button>
+              <button type="button" className="btn-primary">Login</button>
             </Link>
           )}
 

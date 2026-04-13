@@ -51,7 +51,7 @@ body {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: var(--primary);
-  margin: 0.3em 0;
+  margin: 0.4em 0 0.5em;
   padding: 0.15em 0.3em 0.15em 0.4em;
   font-size: 0.9rem;
   font-weight: bold;
@@ -61,7 +61,6 @@ body {
   background-color: var(--secondary);
 }
 .nav-right {
-  border: 1px solid cyan;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -162,11 +161,12 @@ blockquote {
   box-shadow: 0 2px 8px 0 var(--shadow);
   transition: box-shadow 0.2s;
 }
-
 .card-image {
   position: relative;
-  height: 12rem; /* ~192px */
-  overflow: hidden;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--std-border-radius);
 }
 
 /* Generic helper when needed */
@@ -195,4 +195,11 @@ form input {
 }
 form div {
   margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+  }
 }
