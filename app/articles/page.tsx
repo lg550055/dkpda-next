@@ -1,7 +1,5 @@
 // Placeholder code; avoids deployment failure due to missing page component
 
-export const dynamic = 'force-dynamic';
-
 export default function ArticlesPage() {
   return (
     <div>
