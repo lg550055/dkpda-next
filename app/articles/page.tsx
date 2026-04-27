@@ -1,10 +1,21 @@
-// Placeholder code; avoids deployment failure due to missing page component
+import ArticleCard from "@/components/ArticleCard";
+import api from "@/lib/api";
+import { Article } from "@/types";
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const res = await api.get("/articles");
+  const articles: Article[] = res.data;
+
   return (
     <div>
-      <h1>Articles</h1>
-      <p>This is the articles page.</p>
+      <main>
+        <h1>All Articles</h1>
+        <section>
+          {articles.map((a) => (
+            <ArticleCard key={a.id} article={a} />
+          ))}
+        </section>
+      </main>
     </div>
   );
 }
