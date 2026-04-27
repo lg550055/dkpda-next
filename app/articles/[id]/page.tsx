@@ -1,6 +1,5 @@
 import api from "@/lib/api";
 import { Article } from "@/types";
-import Image from "next/image";
 import LikeButton from "@/components/LikeButton";
 
 export default async function ArticlePage({
@@ -8,30 +7,36 @@ export default async function ArticlePage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params; // ← MUST AWAIT
+  const { id } = await params;
   const res = await api.get(`/articles/${id}`);
   const article: Article = res.data;
 
+  const date = new Date(article.created_at).toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
-    <article>
-      <h1>{article.title}</h1>
+    <div className="article-detail">
       {article.image_url && (
-        <div className="image-hero">
-          <Image
-            src={article.image_url.substring(1)}
-            alt={article.title || "Article image"}
-            fill
-            style={{ objectFit: "cover" }}
-            priority
-          />
+        <div className="article-detail-hero">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={article.image_url} alt={article.title} />
         </div>
       )}
-      <div>
-        <span>{new Date(article.created_at).toLocaleDateString()}</span>
-        <span>{article.category.toUpperCase()}</span>
+
+      <h1>{article.title}</h1>
+
+      <div className="article-detail-meta">
+        <span className="article-category">{article.category}</span>
+        <span className="article-detail-date">{date}</span>
       </div>
-      <p>{article.content}</p>
-      <div>
+
+      <p className="article-detail-body">{article.content}</p>
+
+      <div className="article-detail-actions">
         <LikeButton
           articleId={article.id}
           initialUpvotes={article.upvotes}
@@ -39,6 +44,6 @@ export default async function ArticlePage({
           userVote={article.user_vote}
         />
       </div>
-    </article>
+    </div>
   );
 }

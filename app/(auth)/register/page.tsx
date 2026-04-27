@@ -25,106 +25,71 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
-  });
+  } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
       await api.post(
         "/register",
-        {
-          email: data.email,
-          password: data.password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
+        { email: data.email, password: data.password },
+        { headers: { "Content-Type": "application/json" } }
       );
-
       alert("Registration successful! Please log in.");
       router.push("/login");
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { detail?: string; 0?: { msg?: string } } } };
       const message =
-        err.response?.data?.detail ||
-        err.response?.data?.[0]?.msg ||
+        e.response?.data?.detail ||
+        e.response?.data?.[0]?.msg ||
         "Registration failed. Try again.";
       alert(message);
     }
   };
 
   return (
-  <div>
-  <div>
-  <h1>Create Account</h1>
-
-  <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Email */}
-          <div>
-            <label htmlFor="email">
-              Email
-            </label>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h2>Create Account</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">Email</label>
             <input
               {...register("email")}
+              className="form-input"
               type="email"
               id="email"
               placeholder="you@example.com"
-              
             />
-            {errors.email && (
-              <p>{errors.email.message}</p>
-            )}
+            {errors.email && <p className="form-error">{errors.email.message}</p>}
           </div>
-
-          {/* Password */}
-          <div>
-            <label htmlFor="password">
-              Password
-            </label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="password">Password</label>
             <input
               {...register("password")}
+              className="form-input"
               type="password"
               id="password"
               placeholder="••••••••"
-              
             />
-            {errors.password && (
-              <p>{errors.password.message}</p>
-            )}
+            {errors.password && <p className="form-error">{errors.password.message}</p>}
           </div>
-
-          {/* Confirm Password */}
-          <div>
-            <label htmlFor="confirmPassword">
-              Confirm Password
-            </label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
             <input
               {...register("confirmPassword")}
+              className="form-input"
               type="password"
               id="confirmPassword"
               placeholder="••••••••"
-              
             />
-            {errors.confirmPassword && (
-              <p>{errors.confirmPassword.message}</p>
-            )}
+            {errors.confirmPassword && <p className="form-error">{errors.confirmPassword.message}</p>}
           </div>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            
-          >
-            {isSubmitting ? "Creating Account..." : "Register"}
+          <button type="submit" disabled={isSubmitting} style={{ width: "100%", marginTop: "0.5rem" }}>
+            {isSubmitting ? "Creating Account…" : "Register"}
           </button>
         </form>
-
-  <p>
-          Already have an account?{" "}
-          <Link href="/login">
-            Log in
-          </Link>
+        <p className="form-footer">
+          Already have an account? <Link href="/login">Log in</Link>
         </p>
       </div>
     </div>

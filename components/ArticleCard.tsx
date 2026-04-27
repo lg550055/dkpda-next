@@ -1,28 +1,79 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/types";
 
-export default function ArticleCard({ article }: { article: Article }) {
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return "";
+  }
+}
+
+export default function ArticleCard({
+  article,
+  featured = false,
+}: {
+  article: Article;
+  featured?: boolean;
+}) {
+  if (featured) {
+    return (
+      <Link href={`/articles/${article.id}`}>
+        <article className="article-featured">
+          <div className="article-featured-img-wrap">
+            {article.image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={article.image_url}
+                alt={article.title}
+                className="article-featured-img"
+              />
+            )}
+            <div className="article-featured-overlay">
+              <span className="article-category">{article.category}</span>
+              <h2 className="article-featured-title">{article.title}</h2>
+            </div>
+          </div>
+          <div className="article-body">
+            <p className="article-excerpt">{article.content}</p>
+            <div className="article-meta">
+              <span className="article-date">{formatDate(article.created_at)}</span>
+              <span className="article-date">⇧ {article.upvotes}</span>
+            </div>
+          </div>
+        </article>
+      </Link>
+    );
+  }
+
   return (
     <Link href={`/articles/${article.id}`}>
-      <div className="card">
+      <article className="article-card">
         {article.image_url && (
-          <div className="card-image">
-            <Image
-              src={article.image_url.substring(1)}
+          <div className="card-img-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={article.image_url}
               alt={article.title}
-              fill
-              style={{ objectFit: "cover" }}
+              className="card-img"
+              loading="lazy"
             />
           </div>
         )}
-        <div>
-          <span>{article.category.toUpperCase()} • {new Date(article.created_at).toLocaleDateString()}</span>
-          <span>⇧ {article.upvotes} ⇩</span>
-          <h3>{article.title}</h3>
-          <p>{article.content}</p>
+        <div className="card-body">
+          <span className="article-category">{article.category}</span>
+          <h3 className="card-title">{article.title}</h3>
+          <p className="card-excerpt">{article.content}</p>
+          <div className="article-meta">
+            <span className="article-date">{formatDate(article.created_at)}</span>
+            <span className="article-date">⇧ {article.upvotes}</span>
+          </div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 }

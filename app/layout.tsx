@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  style: ["normal", "italic"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
-  title: "Your daily dose of satire",
-  description: "The satire daily news site",
+  title: "Dikipedia — Your Daily Dose of Satire",
+  description: "The premier source for satirical news that's almost too real.",
 };
 
 export default function RootLayout({
@@ -17,10 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body>
         <Navbar />
-        <>{children}</>
+        {children}
         <Footer />
       </body>
     </html>

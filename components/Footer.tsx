@@ -1,9 +1,15 @@
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
     <footer className="site-footer">
-      © Dikipedia {currentYear}. All rights reserved. (Not really)
+      <div className="footer-inner">
+        <span className="footer-logo">Dikipedia</span>
+        <p className="footer-tagline">
+          All events depicted are fictional, which is unfortunate because they&rsquo;re all plausible.
+        </p>
+        <p className="footer-copy">&copy; {year} Dikipedia. All rights not reserved.</p>
+      </div>
     </footer>
   );
 }
