@@ -2,6 +2,8 @@ import ArticleCard from "@/components/ArticleCard";
 import api from "@/lib/api";
 import { Article } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 export default async function ArticlesPage() {
   let articles: Article[] = [];
   try {
