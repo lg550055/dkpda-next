@@ -293,12 +293,6 @@ h1, h2, h3, h4 {
   object-fit: cover;
 }
 
-.article-featured-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.12) 0%, transparent 35%);
-  pointer-events: none;
-}
 
 .article-featured-title {
   font-family: var(--font-playfair), Georgia, serif;
@@ -405,6 +399,13 @@ h1, h2, h3, h4 {
   padding: 0.18em 0.55em;
   border-radius: 2px;
   font-family: var(--font-inter), sans-serif;
+}
+
+.article-category--overlay {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
 }
 
 /* ===========================
