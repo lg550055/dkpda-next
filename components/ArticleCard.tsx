@@ -33,12 +33,11 @@ export default function ArticleCard({
                 className="article-featured-img"
               />
             )}
-            <div className="article-featured-overlay">
-              <span className="article-category">{article.category}</span>
-              <h2 className="article-featured-title">{article.title}</h2>
-            </div>
+            <div className="article-featured-overlay" />
           </div>
           <div className="article-body">
+            <span className="article-category">{article.category}</span>
+            <h2 className="article-featured-title">{article.title}</h2>
             <p className="article-excerpt">{article.content}</p>
             <div className="article-meta">
               <span className="article-date">{formatDate(article.created_at)}</span>
