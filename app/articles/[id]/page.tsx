@@ -1,4 +1,5 @@
 import api from "@/lib/api";
+import { resolveImageUrl } from "@/lib/imageUrl";
 import { Article } from "@/types";
 import LikeButton from "@/components/LikeButton";
 
@@ -18,12 +19,14 @@ export default async function ArticlePage({
     day: "numeric",
   });
 
+  const imageUrl = resolveImageUrl(article.image_url);
+
   return (
     <div className="article-detail">
-      {article.image_url && (
+      {imageUrl && (
         <div className="article-detail-hero">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={article.image_url} alt={article.title} />
+          <img src={imageUrl} alt={article.title} />
         </div>
       )}
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { resolveImageUrl } from "@/lib/imageUrl";
 import { Article } from "@/types";
 
 function formatDate(iso: string) {
@@ -20,15 +21,17 @@ export default function ArticleCard({
   article: Article;
   featured?: boolean;
 }) {
+  const imageUrl = resolveImageUrl(article.image_url);
+
   if (featured) {
     return (
       <Link href={`/articles/${article.id}`}>
         <article className="article-featured">
           <div className="article-featured-img-wrap">
-            {article.image_url && (
+            {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={article.image_url}
+                src={imageUrl}
                 alt={article.title}
                 className="article-featured-img"
               />
@@ -51,11 +54,11 @@ export default function ArticleCard({
   return (
     <Link href={`/articles/${article.id}`}>
       <article className="article-card">
-        {article.image_url && (
+        {imageUrl && (
           <div className="card-img-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={article.image_url}
+              src={imageUrl}
               alt={article.title}
               className="card-img"
               loading="lazy"
